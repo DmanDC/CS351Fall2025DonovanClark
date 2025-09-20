@@ -42,6 +42,18 @@ public class TankPlayerController : MonoBehaviour
         transform.Translate(Vector2.right * Time.deltaTime * speed * verticalInput);
 
         //rotate player with horizonal input
-    transform.Rotate(Vector3.back,turnSpeed * Time.deltaTime * horizontalInput);
+        //transform.Rotate(Vector3.back,turnSpeed * Time.deltaTime * horizontalInput);
+
+        //Rotate player with horizonal input 
+        //but reverse the rotation direction when moving backwards
+        if(verticalInput < 0)
+        {
+            transform.Rotate(Vector3.back, -turnSpeed * Time.deltaTime * horizontalInput);
+        }
+        else
+        {
+            transform.Rotate(Vector3.back, turnSpeed * Time.deltaTime * horizontalInput);
+
+        }
     }
 }
