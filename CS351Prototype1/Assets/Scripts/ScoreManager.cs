@@ -46,17 +46,19 @@ public class ScoreManager : MonoBehaviour
             gameOver = true;
         }
 
+        
+
         if (gameOver)
         {
             if(won)
             {
                 //display you Win! text
-                textbox.text = "You Win\nPress R tp Try Again!";
+                textbox.text = "You Win\nPress R to Try Again!";
             }
             else
             {
                 //display you Lose! text
-                textbox.text = "You Lose\nPress R tp Try Again!";
+                textbox.text = "You Lose\nPress R to Try Again!";
 
             }
 
