@@ -1,0 +1,74 @@
+/*Donovan Clark
+ * Date:9/22/25
+* Platformer Prototype
+* Controls player movement
+*/
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlatformerPlayerController : MonoBehaviour
+{
+    // Player Movement Speed
+    public float moveSpeed = 5f;
+
+    //Force applied when jimping
+    public float jumpForce = 10f;
+
+    //Layer mask for detecting ground
+    public LayerMask groundLayer;
+
+    //Transform representing the position to check for ground 
+    public Transform groundCheck;
+
+    //Raduis for groundCheck
+    public float groundCheckRadius = 0.2f;
+
+    //Reference to our Rigidbody2D
+    private Rigidbody2D rb;
+
+    //Boolean to keep tract of if we are on the ground
+    private bool isGrounded;
+
+    // a variable to hole horizontal input
+    private float horizontalInput;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //Get the Rigidbody2D component attached to the gameobject
+        rb = GetComponent<Rigidbody2D>();
+
+        //Ensure the groundCheck variable is assigned
+        if(groundCheck == null)
+        {
+            Debug.LogError("groundCheck not assinged to the player controller");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Get input vales for horizonal movevemnt 
+        horizontalInput = Input.GetAxis("Horizontal");
+
+        //Check for jump input
+        if(Input.GetButtonDown("Jump") && isGrounded)
+        {
+            //Apply an upward force for Jumping
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce.velocity.y);
+        }
+
+    }
+
+    void FixedUpdate()
+    {
+        // Move the player using Rigidbody2D in FixedUpdate
+        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+
+        // Check if the player is grounded
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+}
