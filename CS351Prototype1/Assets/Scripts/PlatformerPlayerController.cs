@@ -58,9 +58,9 @@ public class PlatformerPlayerController : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             //Apply an upward force for Jumping
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-
+        
     }
 
     void FixedUpdate()
@@ -70,5 +70,18 @@ public class PlatformerPlayerController : MonoBehaviour
 
         // Check if the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        //TODO: Optionally, we can add animations here later
+
+        // Ensure the player is facing the direction of movement
+
+        if(horizontalInput > 0)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f); // face right
+        }
+        else if (horizontalInput < 0)
+        {
+            transform.localScale = new Vector3(-1f , 1f, 1f); //face left
+        }
     }
 }
