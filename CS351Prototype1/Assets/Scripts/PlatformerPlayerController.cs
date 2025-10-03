@@ -34,10 +34,19 @@ public class PlatformerPlayerController : MonoBehaviour
     // a variable to hole horizontal input
     private float horizontalInput;
 
+    //set this referecne to the jump sound in the the inspector
+    public AudioClip jumpSound;
+
+    //an audio source to play sound effects
+    private AudioSource playerAudio;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        //Set reference to player audio source
+        playerAudio = GetComponent<AudioSource>();
+
         //Get the Rigidbody2D component attached to the gameobject
         rb = GetComponent<Rigidbody2D>();
 
@@ -46,6 +55,7 @@ public class PlatformerPlayerController : MonoBehaviour
         {
             Debug.LogError("groundCheck not assinged to the player controller");
         }
+
     }
 
     // Update is called once per frame
@@ -59,6 +69,9 @@ public class PlatformerPlayerController : MonoBehaviour
         {
             //Apply an upward force for Jumping
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+            //Play jump sound effect
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
         
     }
