@@ -10,10 +10,12 @@ public class CamFollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null) return;
         //set the camera's position to the players position
         transform.position = new Vector3 (
             player.transform.position.x,
             player.transform.position.y,
             transform.position.z);
     }
+
 }

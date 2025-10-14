@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3806148408452103255}
   - component: {fileID: 3806148408452103257}
   - component: {fileID: 3806148408452103256}
+  - component: {fileID: 8631864211507999025}
   m_Layer: 0
   m_Name: PlatformerPlayer
   m_TagString: Player
@@ -143,6 +144,7 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 3806148408866894359}
   groundCheckRadius: 0.2
+  jumpSound: {fileID: 0}
 --- !u!114 &3806148408452103256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +158,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lowertY: -10
+--- !u!114 &8631864211507999025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3806148408452103250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ebca558440ce043a453fe2a6da0219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: PracticeLevel2
+  targetSpawnPointName: sign_door2
 --- !u!1 &3806148408866894356
 GameObject:
   m_ObjectHideFlags: 0

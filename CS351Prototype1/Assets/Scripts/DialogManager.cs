@@ -14,44 +14,56 @@ public class DialogManager : MonoBehaviour
     public GameObject continueButton;
     public GameObject DialogPanel;
 
+    // Unique key for this dialog in PlayerPrefs
+    public string dialogKey;
+
+
     private void OnEnable()
     {
-        //disable the continue button
+        // If this dialog has already been shown before, skip it
+        if (PlayerPrefs.GetInt(dialogKey, 0) == 1)
+        {
+            DialogPanel.SetActive(false);
+            return;
+        }
+
+        // disable the continue button
         continueButton.SetActive(false);
         StartCoroutine(Type());
     }
 
-    //Coroutine to type one letter at a time in the dialog box
     IEnumerator Type()
     {
-        //start the textbox as em
         textbox.text = "";
 
-        // loop though th esentence adding one letter at a time
         foreach (char letter in sentences[index])
         {
             textbox.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
-        //Enable contine button
-        continueButton.SetActive(true);
 
+        continueButton.SetActive(true);
     }
 
     public void NextSentence()
     {
-        //Disable the contine button
         continueButton.SetActive(false);
+
         if (index < sentences.Length - 1)
         {
             index++;
             textbox.text = "";
             StartCoroutine(Type());
         }
-        else 
+        else
         {
             textbox.text = "";
             DialogPanel.SetActive(false);
+
+            // Save that this dialog was shown
+            PlayerPrefs.SetInt(dialogKey, 1);
+            PlayerPrefs.Save();
         }
     }
+
 }

@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlatformerStart.unity
     guid: 4aa21e7cf3e3ed14c8de94456899af11
+  - enabled: 1
+    path: Assets/Scenes/PracticeLevel2.unity
+    guid: 65cbaf2f4dbec9941abedb2a8683637d
+  - enabled: 1
+    path: Assets/Scenes/PracticeLevel2.unity
+    guid: 90ad3c35aa9c638479351e59a0bc4f46
   m_configObjects: {}
