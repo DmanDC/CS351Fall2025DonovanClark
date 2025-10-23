@@ -40,6 +40,8 @@ public class PlatformerPlayerController : MonoBehaviour
     //an audio source to play sound effects
     private AudioSource playerAudio;
 
+    private Animator animator;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,8 @@ public class PlatformerPlayerController : MonoBehaviour
 
         //Get the Rigidbody2D component attached to the gameobject
         rb = GetComponent<Rigidbody2D>();
+
+        animator = GetComponent<Animator>();
 
         //Ensure the groundCheck variable is assigned
         if(groundCheck == null)
@@ -72,17 +76,30 @@ public class PlatformerPlayerController : MonoBehaviour
 
             //Play jump sound effect
             playerAudio.PlayOneShot(jumpSound, 1.0f);
+
+            
+            
         }
+        
+        
         
     }
 
     void FixedUpdate()
     {
+
         // Move the player using Rigidbody2D in FixedUpdate
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
+        // Move the player using RigidBody2D in FixedUpdate
+        animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
+
+        animator.SetFloat("yVelocity", rb.velocity.y);
+
         // Check if the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        animator.SetBool("onGround", isGrounded);
 
         //TODO: Optionally, we can add animations here later
 
