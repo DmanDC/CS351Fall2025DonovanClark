@@ -14,6 +14,9 @@ public class Projectile : MonoBehaviour
     //Damage of the projectile with a deafult of 20
     public int damage = 20;
 
+    //Impact effect of the projectile
+    public GameObject impactEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +44,9 @@ public class Projectile : MonoBehaviour
         // if the object that was hit is not the player
         if(hitInfo.gameObject.tag != "Player")
         {
+            //Insantiate the impactEffect
+            Instantiate(impactEffect, transform.position, Quaternion.identity);
+
             //Destroy the projectile
             Destroy(gameObject);
         }
