@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     //A reference to the health bar
     private DisplayBar healthBar;
 
+    //The damage the enemy deals to the player
+    public int damage = 10;
+
     private void Start()
     {
         //Find the HealthBar in the children of the Enemy;
@@ -27,6 +30,28 @@ public class Enemy : MonoBehaviour
         healthBar.SetMaxValue(health);
     }
 
+    // Damage the player when the enemy collides with them 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //Get the player health script from the player object
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+
+            //check if player health scrupt is null 
+            if(playerHealth == null )
+            {
+                //Log an error 
+                Debug.LogError("PlayerHealth script not found on player");
+                return;
+            }
+            //Damage the player
+            playerHealth.TakeDamage(damage);
+
+            //knockback the player 
+            playerHealth.Knockback(transform.position);
+        }
+    }
 
     public void TakeDamge(int damage) {
         // Subtract the damage dealt from the health
