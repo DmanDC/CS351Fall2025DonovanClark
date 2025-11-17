@@ -29,10 +29,24 @@ public class PlayerHealth : MonoBehaviour
     //Time to seconds to recover from hit
     public float hitRecoveryTime = 0.2f;
 
+    // referecne to player sound effects
+    private AudioSource playerAudio;
+
+    public AudioClip playerHitSound;
+
+    private Animator animator;
+
+    //public AudioClip playerDeathSound;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        // set the animator refernce
+        animator = GetComponent<Animator>();
+
+        //set the audio soucuce reference 
+        playerAudio = GetComponent<AudioSource>();
       // set the rigidbody2d reference
       rb = GetComponent<Rigidbody2D>();
 
@@ -60,8 +74,11 @@ public class PlayerHealth : MonoBehaviour
         hitRecently = true;
 
         // Start the coroutinr to reset hitRecently
-        StartCoroutine(RecoverFromHit());
-
+        if (gameObject.activeSelf)
+        { 
+         StartCoroutine(RecoverFromHit());
+        }
+    
         //Calculate the direction of the knockback
         Vector2 direction = transform.position - enemyPosition;
 
@@ -85,6 +102,9 @@ public class PlayerHealth : MonoBehaviour
 
         //Set hitRecently to false
         hitRecently = false;
+
+        //set the hit animation to false
+        animator.SetBool("hit", false);
     }
 
     public void TakeDamage(int damage)
@@ -95,14 +115,19 @@ public class PlayerHealth : MonoBehaviour
         // update healthbar
         healthBar.SetValue(health);
 
-    //Todo: play a sound effect when the player takes damage
-    // Todo: play an animation when player takes damage
-
         // if the health is less than or equal to zero
         if(health <= 0)
         {
             // call the die method
             Die();
+        }
+        else
+        {
+            // play the player hit sound
+            playerAudio.PlayOneShot(playerHitSound);
+
+            //play the player hit animation
+            animator.SetBool("hit", true);
         }
     }
 
@@ -111,13 +136,15 @@ public class PlayerHealth : MonoBehaviour
         //set GameOver to true 
         ScoreManager.gameOver = true;
 
-        // ToDo: play a sound effect when the player dies
-        //ToDo: add the player deatheffect when the player dies
+        // play a sound effect when the player dies
+        // playing the sound effect on the player deatheffect
+       // playerAudio.PlayOneShot(playerDeathSound);
 
         //Instantiate the Dalth effect at the players's position
-// GameObject deathEffect = Instantiate(playerDeathEffect, transform.position, Quaternion.identity);
+        GameObject deathEffect = Instantiate(playerDeathEffect, transform.position, Quaternion.identity);
         //Destroy the death effect after 2 seconds
-       // Destory(deathEffect, 2f);
+        // Don't need this becuase of the destroy delay script
+       // Destroy(deathEffect, 2f);
 
         //Disable the player object 
         gameObject.SetActive(false);

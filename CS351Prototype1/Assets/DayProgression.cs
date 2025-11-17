@@ -21,6 +21,8 @@ public class DayProgression : MonoBehaviour
     //set this this in the inspector
     public TMP_Text textbox;
     public Button button;
+    public Animator dayAnimator;
+    public GameObject SunAndMoo;
     
     
     // Start is called before the first frame update
@@ -34,6 +36,7 @@ public class DayProgression : MonoBehaviour
         Day += 1;
         Debug.Log("Button was clicked!");
         if (textbox != null) textbox.text = "Day: " + Day;
+        GameObject SunAndMoon = Instantiate(SunAndMoo);
     }
     // Update is called once per frame
     void Update()

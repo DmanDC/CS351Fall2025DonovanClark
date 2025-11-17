@@ -695,6 +695,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textbox: {fileID: 671849942}
   button: {fileID: 1358116891}
+  dayAnimator: {fileID: 8260344390769491068, guid: 77ec5124a9cc45a48860438856c32908, type: 3}
+  SunAndMoo: {fileID: 8260344390769491067, guid: 77ec5124a9cc45a48860438856c32908, type: 3}
 --- !u!114 &1358116891
 MonoBehaviour:
   m_ObjectHideFlags: 0
