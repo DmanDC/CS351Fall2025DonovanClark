@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4051255766459076322}
   - component: {fileID: 4051255766459076254}
   - component: {fileID: 4051255766459076255}
+  - component: {fileID: -2152999634878674957}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -137,3 +138,16 @@ MonoBehaviour:
   speed: 20
   damage: 20
   impactEffect: {fileID: 578178190355778676, guid: 78142bb16f444a541bc985d74e3b0a2f, type: 3}
+--- !u!114 &-2152999634878674957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4051255766459076323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae347e3b8f1f204493c698d99ca0183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 2
