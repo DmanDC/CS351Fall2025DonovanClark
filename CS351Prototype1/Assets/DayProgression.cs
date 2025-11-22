@@ -33,7 +33,7 @@ public class DayProgression : MonoBehaviour
         textbox.text = "Day: " + Day;
         button.onClick.AddListener(NextDay);
         Status.text = "Day:" + Day;
-        statusReport.onClick.AddListener(Destroy);
+       // statusReport.onClick.AddListener(Destroy);
     }
     private void NextDay()
         {
