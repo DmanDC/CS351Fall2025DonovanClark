@@ -21,7 +21,9 @@ public class DayProgression : MonoBehaviour
     //set this this in the inspector
     public TMP_Text textbox;
     public Button button;
+    public Button statusReport;
     public Animator dayAnimator;
+    public TMP_Text Status;
     public GameObject SunAndMoo;
     
     
@@ -30,6 +32,8 @@ public class DayProgression : MonoBehaviour
     { 
         textbox.text = "Day: " + Day;
         button.onClick.AddListener(NextDay);
+        Status.text = "Day:" + Day;
+        statusReport.onClick.AddListener(Destroy);
     }
     private void NextDay()
         {
