@@ -45,7 +45,7 @@ public class DayProgression : MonoBehaviour
         }
             button.onClick.AddListener(NextDay);
         statusReport.onClick.AddListener(OnDestroy);
-        statusText.text = "Day:" + Day;
+        statusText.text = "Day's passed:" + Day;
 
        
     }
@@ -59,7 +59,7 @@ public class DayProgression : MonoBehaviour
         }
             Debug.Log("Button was clicked!");
         if (textbox != null) textbox.text = "Day: " + Day;
-        if (textbox != null) statusText.text = "Day: " + Day;
+        if (textbox != null) statusText.text = "Day's passed: " + Day;
         if (Day % 7 == 0)
         {
             spawnedSunAndMoon = Instantiate(DayToNight);
